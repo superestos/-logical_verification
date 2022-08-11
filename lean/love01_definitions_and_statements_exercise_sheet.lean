@@ -98,7 +98,7 @@ the property that the value of `e` after simplification is the same as the
 value of `e` before. -/
 
 lemma simplify_correct (env : string → ℤ) (e : aexp) :
-  true :=   -- replace `true` by your lemma statement
+  eval env e = eval env (simplify e) :=
 sorry
 
 
@@ -119,18 +119,18 @@ def K : α → β → α :=
 λa b, a
 
 def C : (α → β → γ) → β → α → γ :=
-sorry
+λf b a, (f a b)
 
 def proj_1st : α → α → α :=
-sorry
+λx y, x
 
 /-! Please give a different answer than for `proj_1st`. -/
 
 def proj_2nd : α → α → α :=
-sorry
+λx y, y
 
 def some_nonsense : (α → β → γ) → α → (α → γ) → β → γ :=
-sorry
+λ_ a g _, g a
 
 /-! 3.2. Show the typing derivation for your definition of `C` above, on paper
 or using ASCII or Unicode art. You might find the characters `–` (to draw
