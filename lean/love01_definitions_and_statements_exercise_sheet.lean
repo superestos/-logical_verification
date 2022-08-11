@@ -21,8 +21,10 @@ be negative are represented by 0. For example:
     `sub 7 2 = 5`
     `sub 2 7 = 0` -/
 
-def sub : ℕ → ℕ → ℕ :=
-sorry
+def sub : ℕ → ℕ → ℕ
+| m nat.zero := m
+| 0 n := 0
+| (nat.succ m) (nat.succ n) := (sub m n)
 
 /-! 1.2. Check that your function works as expected. -/
 
