@@ -20,25 +20,51 @@ namespace backward_proofs
 
 lemma B (a b c : Prop) :
   (a → b) → (c → a) → c → b :=
-sorry
+begin
+  intros hab hca hc,
+  apply hab,
+  apply hca,
+  exact hc,
+end
 
 lemma S (a b c : Prop) :
   (a → b → c) → (a → b) → a → c :=
-sorry
+begin
+  intros h hab ha,
+  apply h,
+  { apply ha, },
+  { apply hab,
+    apply ha,
+  }
+end
 
 lemma more_nonsense (a b c d : Prop) :
   ((a → b) → c → d) → c → b → d :=
-sorry
+begin
+  intros h hc hb,
+  apply h,
+  intros ha, exact hb,
+  exact hc,
+end
 
 lemma even_more_nonsense (a b c : Prop) :
   (a → b) → (a → c) → a → b → c :=
-sorry
+begin
+  intros hab hac ha hb,
+  apply hac,
+  exact ha,
+end
 
 /-! 1.2 (1 point). Prove the following lemma using basic tactics. -/
 
 lemma weak_peirce (a b : Prop) :
   ((((a → b) → a) → a) → b) → b :=
-sorry
+begin
+  intros h, apply h,
+  intros g, apply g,
+  intros f, apply h,
+  intros g', apply f,
+end
 
 
 /-! ## Question 2 (5 points): Logical Connectives
