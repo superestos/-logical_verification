@@ -19,8 +19,9 @@ namespace LoVe
 end of a list. Your function should be defined by recursion and not using `++`
 (`list.append`). -/
 
-def snoc {α : Type} : list α → α → list α :=
-sorry
+def snoc {α : Type} : list α → α → list α
+| list.nil a := [a]
+| (list.cons head tail) a := list.cons head (snoc tail a)
 
 /-! 1.2 (0 point). Convince yourself that your definition of `snoc` works by
 testing it on a few examples. -/
@@ -34,8 +35,9 @@ testing it on a few examples. -/
 2.1 (1 point). Define a generic `map` function that applies a function to every
 element in a list. -/
 
-def map {α : Type} {β : Type} (f : α → β) : list α → list β :=
-sorry
+def map {α : Type} {β : Type} (f : α → β) : list α → list β
+| list.nil := list.nil
+| (list.cons head tail) := list.cons (f head) (map tail)
 
 /-! 2.2 (2 points). State (without proving them) the so-called functorial
 properties of `map` as lemmas. Schematically:
@@ -67,16 +69,16 @@ while constructing a term. By hovering over `_`, you will see the current
 logical context. -/
 
 def B : (α → β) → (γ → α) → γ → β :=
-sorry
+λf g a, f (g a)
 
 def S : (α → β → γ) → (α → β) → α → γ :=
-sorry
+λf g a, f a (g a)
 
 def more_nonsense : ((α → β) → γ → δ) → γ → β → δ :=
-sorry
+λf a b, f (λg, b) a
 
 def even_more_nonsense : (α → β) → (α → γ) → α → β → γ :=
-sorry
+λf g a b, g a
 
 /-! 3.2 (1 point). Complete the following definition.
 
